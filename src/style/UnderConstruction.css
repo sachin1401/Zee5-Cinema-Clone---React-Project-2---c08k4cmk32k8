@@ -1,0 +1,30 @@
+.underConstruction{
+    background: #222;
+    font-family:verdana,Tahoma,Arial;
+    text-align:center;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure it takes the full viewport height */
+}      
+.tape {
+    font-size: 3em;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: -webkit-linear-gradient(0deg,#222,transparent,#222),linear-gradient(transparent 30px, #ff0 30px), repeating-linear-gradient(45deg, transparent, transparent 35px, #ff0 35px, #ff0 70px);
+    background-image: -moz-linear-gradient(90deg,#222,transparent,#222),linear-gradient(transparent 30px, #ff0 30px), repeating-linear-gradient(45deg, transparent, transparent 35px, #ff0 35px, #ff0 70px);
+    background-image: -o-linear-gradient(90deg,#222,transparent,#222),linear-gradient(transparent 30px, #ff0 30px), repeating-linear-gradient(45deg, transparent, transparent 35px, #ff0 35px, #ff0 70px);
+    background-image: linear-gradient(90deg,#222,transparent,#222),linear-gradient(transparent 30px, #ff0 30px), repeating-linear-gradient(45deg, transparent, transparent 35px, #ff0 35px, #ff0 70px);
+    background-size: auto,auto 132px,auto;
+}
+.tape span{
+    cursor:default;
+    color:#222;
+    display:block;
+    padding:1em;
+white-space:nowrap;
+}
+
+  

@@ -1,0 +1,113 @@
+.hindi-trending-section {
+    text-align: center;
+    padding: 20px;
+    padding-left: 30px;
+    background-color: #0f0617;
+  }
+  
+  .hindi-trending-section h2{
+    color: white;
+    text-align: left;
+    padding-left: 15px;
+  }
+  .hindi-card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    position: relative;
+  }
+  
+  .hindi-cards {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .hindi-card {
+    flex: 0 0 auto;
+    width: 310px;
+    height: 215px;
+    margin-right: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .hindi-card:hover .hindi-card-details {
+    transform: translateY(0);
+  }
+  
+  .hindi-card-image {
+    height: 100%;
+    cursor: pointer;
+    /* overflow: hidden; */
+    /* margin: 5px; */
+    /* margin-bottom: 10px; */
+  }
+  
+  .hindi-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hindi-card-details {
+    /* padding: 10px; */
+    height: 1;
+    background-color: #ffffffad;
+    border-top: 1px solid #ddd;
+    /* overflow: hidden; */
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(100%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .hindi-card h3 {
+    margin: 10px;
+  }
+  
+  .hindi-card p {
+    margin: 0 10px 10px;
+  }
+  
+  .hindi-nav-button {
+    border: none;
+    border-radius: 500px;
+    background: rgba(220, 220, 220, 0.486);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .hindi-prev {
+    /* position: absolute;  */
+    left: 0;
+  }
+  
+  .hindi-next {
+    position: absolute;
+    right: 0;
+  }
+  
+  /* .current-card {
+    border: 2px solid #ffffff;
+  } */
+  
+  @media (max-width: 768px) {
+    .hindi-card-container {
+      flex-direction: column;
+    }
+  
+    .hindi-nav-button {
+      margin-top: 10px;
+    }
+  }
+  

@@ -1,0 +1,167 @@
+/* Login.css */
+
+.login-body{
+    /* background-color: #0f0617; */
+    padding: 20vh 0 20vh 0;
+}
+.login-container {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 30px 20px 30px 20px; 
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    background-color: #fff;
+  }
+  
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 30px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .login-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  .login-button {
+    background-color: #8230c6;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  /* .login-button:hover {
+    background-color: #0056b3;
+  }
+   */
+  .error-message {
+    color: #ff0000;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .success-message{
+    color: #009420;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  /* Add this CSS to your Login.css file */
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .register-link a {
+    color: #8230c6ea; /* Link color */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline; /* Underline the link on hover */
+  }
+  
+
+  /* Add these styles to your "Register.css" stylesheet */
+
+.social-icons {
+    display: flex; /* Arrange images in a row */
+    align-items: center; /* Vertically align images */
+    justify-content: center; /* Horizontally center images */
+  }
+  
+  .social-icons img {
+    
+    width: 50px; /* Set the desired width for all images */
+    height: 50px; /* Set the desired height for all images */
+    margin-right: 10px; /* Add some spacing between images (adjust as needed) */
+  }
+  .register-subtext {
+    font-size: 16px; /* Set the font size */
+    color: #333; /* Set the text color */
+    margin: 20px 0; /* Add margin for spacing, 20px top and bottom, 0 left and right */
+    line-height: 1.4; /* Adjust the line height for better readability */
+    font-style: normal; /* Add italic style to the text */
+    text-align: center; /* Center-align the text */
+    max-width: 400px; /* Limit the maximum width to prevent overly long lines */
+  }
+
+  /* Add these styles to your stylesheet (e.g., Register.css) */
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .circle {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+  }
+  
+  .circle-text {
+    font-size: 14px;
+    color: #333;
+  }
+  
+
+/* input[type="text"], */
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Set the width to 100% to expand across the container */
+  padding: 22px; /* Add padding for spacing inside the input fields */
+  font-size: 15px; /* Adjust the font size */
+}
+
+/* Style for the terms-and-policy container */
+.terms-and-policy {
+    text-align: center;
+    margin-top: 5px; /* Adjust the margin as needed */
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Style for the terms and privacy links */
+  .terms-link,
+  .privacy-link {
+    color: #007BFF; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 5px; /* Add spacing between links */
+  }
+  
+  /* Style for the links when hovered */
+  .terms-link:hover,
+  .privacy-link:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  

@@ -1,0 +1,175 @@
+#footer {
+    font-size: 12px;
+    width: 100%;
+  }
+  
+  #footer a:hover {
+    color: #4c2670;
+  }
+  
+  #footer a {
+    color: hsla(0, 0%, 100%, 0.5);
+  }
+  
+  .foot-container {
+    padding: 0 200px; /* Adjust horizontal padding for smaller screens */
+    background-color: #0f0617;
+  }
+  .foot-downloadApps, .foot-leftlogo h4{
+    color: white;
+  }
+  .foot-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  
+  .foot-row > .foot-footer-col {
+    margin-top: 10px;
+  }
+  
+  .foot-footer-col > div {
+    margin-top: 16px;
+  }
+  
+  .foot-end {
+    margin: 3% 0 0 0;
+    padding-bottom: 2%;
+    font-size: 13px;
+    font-size: max(8px, 0.7vw);
+    color: hsla(0, 0%, 100%, 0.5);
+  }
+  
+  footer h3 {
+    font-weight: 20px;
+    color: white;
+  }
+  
+  .foot-logDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+  }
+  
+  .foot-logo h4 {
+    margin-right: 10px;
+  }
+  
+  .foot-logo a {
+    margin-right: 10px;
+  }
+  
+  .foot-logo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .foot-leftlogo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .foot-leftlogo a {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(37, 35, 35);
+    border-radius: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .foot-leftlogo i {
+    font-size: 15px;
+    color: bisque;
+  }
+  
+  .foot-leftlogo h4 {
+    margin-top: 0;
+  }
+  
+  .foot-leftlogo .foot-fb:hover {
+    background-color: #1877f2;
+    cursor: pointer;
+  }
+  
+  .foot-leftlogo .foot-insta:hover {
+    background-color: #f501c9;
+    cursor: pointer;
+  }
+  
+  .foot-leftlogo .foot-twitter:hover {
+    background-color: #1da1f2;
+    cursor: pointer;
+  }
+  
+  .foot-leftlogo .foot-youtube:hover {
+    background-color: #ff0000;
+    cursor: pointer;
+  }
+  .foot-about {
+    width: 100%; /* Adjust width as needed */
+    margin: 20px auto;
+    padding-left: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    justify-content: space-evenly;
+  }
+
+  
+
+/*   
+@media all and (min-width:51px ) and (max-width: 381px){
+    .foot-about{
+        width:30%;
+        margin:20px auto ;
+        display: flex;
+        flex-wrap: wrap;        
+        justify-content: space-between;
+        
+    }
+    .foot-leftlogo{
+        margin-top: 20px;
+        flex-wrap: nowrap;
+    }
+    .foot-logo > h4{
+        display: none;
+        
+    }
+    .foot-leftlogo > h4{
+        display: none;
+        
+    }
+    .foot-leftlogo a{
+        margin-right: 10px    
+    }
+
+}
+
+@media all and (min-width:380px ) and (max-width: 981px){
+    .foot-about{
+        width:40%;
+        margin:20px auto ;
+        display: flex;
+        flex-wrap: wrap;        
+        justify-content: space-between;
+        
+    }
+    .foot-leftlogo{
+        margin-top: 20px;
+        flex-wrap: nowrap;
+    }
+    .foot-logo{
+        flex-wrap: nowrap;
+    }
+} 
+ */

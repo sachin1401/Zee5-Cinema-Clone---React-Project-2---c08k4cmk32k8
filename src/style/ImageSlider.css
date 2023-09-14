@@ -1,0 +1,48 @@
+/* ImageSlider.css */
+.image-slider {
+    width: 100%;
+    max-width: 1500px; /* Adjust as needed */
+    margin: auto;
+    padding: 18px;
+    position: relative;
+  }
+  
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .carousel-item .slider-img {
+    width: 100%; /* Adjust the image width */
+    height: auto;
+    max-height: 550px; /* Set the maximum image height */
+  }
+  .navSliderContainer{
+    background-color: #0f0617;
+  }
+  
+  .slider-img {
+    width: 100%; /* Adjust the image width */
+    height: auto;
+    max-height: 400px; /* Set the maximum image height */
+  }
+  
+  .button-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 35px;
+    padding: 30px; /* Add padding */
+  
+  }
+
+.watch-button a{
+  color: white;
+  text-decoration: none;
+}
