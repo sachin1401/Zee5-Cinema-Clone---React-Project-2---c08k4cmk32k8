@@ -18,6 +18,7 @@ function App() {
     <>
       <Router>
         <Navbar />
+        {/* SET all routes here */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<UserRegistration />} />
