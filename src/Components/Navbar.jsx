@@ -35,6 +35,7 @@ const Navbar = (props) => {
     <>
       <AppBar sx={{ background: "#0f0617", color: "white", padding: "3px" }}>
         <Toolbar>
+          {/* logo of website */}
           <div className="imgg">
             <Link to="./">
               <img
@@ -45,6 +46,7 @@ const Navbar = (props) => {
             </Link>
           </div>
           <>
+            {/* different tab section */}
             <Tabs
               value={selectedTab}
               onChange={handleTabChange}
@@ -78,6 +80,7 @@ const Navbar = (props) => {
             <Link to="/under-construction" className="white-link">
               <AppsSharpIcon />
             </Link>
+            {/* here search bar using mui */}
             <div className={`input-div ${loggedInUser ? "center" : ""}`}>
               <Button
                 sx={{
@@ -101,6 +104,7 @@ const Navbar = (props) => {
             <Link to="/under-construction" className="white-link">
               <TranslateSharpIcon />
             </Link>
+            {/* login functionality */}
             {loggedInUser ? (
               // If a user is logged in, display their name and a "Logout" button
               <div>
