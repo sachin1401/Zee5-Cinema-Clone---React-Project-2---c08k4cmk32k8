@@ -118,7 +118,7 @@ const Buyplan = () => {
               <p>Pay useing UPI</p>
             </div>
             {loggedInUser ? (
-              <Link to="/buy-plan/payment-status">
+              <Link to="/buy-plan/payment">
                 <button className="btnb">Buy Premium</button>
               </Link>
             ) : (

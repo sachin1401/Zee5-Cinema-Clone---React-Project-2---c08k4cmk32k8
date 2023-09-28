@@ -14,7 +14,7 @@ function TopMovieDemo() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
@@ -46,9 +46,16 @@ function TopMovieDemo() {
   };
 
   const handleWatchVideo = (videoUrl, item) => {
-    setCurrentVideoUrl(videoUrl);
-    setSelectedVideo(item); // Set the selected video item
-    setIsVideoModalOpen(true);
+    if (isLoggedIn) {
+      // The user is logged in, play the video
+      setCurrentVideoUrl(videoUrl);
+      setSelectedVideo(item);
+      setIsVideoModalOpen(true);
+    } else {
+      // The user is not logged in, redirect to the login page
+      // You should replace '/login' with the actual login page URL
+      window.location.href = "/login";
+    }
   };
 
   const handleCloseVideo = () => {
@@ -102,7 +109,7 @@ function TopMovieDemo() {
                       color="primary"
                       onClick={() => handleWatchVideo(item.video_url, item)}
                     >
-                      <PlayArrowIcon />
+                      <PlayArrowIcon onClick={handleWatchVideo} />
                       Watch
                     </Button>
                   </p>

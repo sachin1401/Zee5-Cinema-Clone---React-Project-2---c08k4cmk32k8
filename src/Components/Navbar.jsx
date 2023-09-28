@@ -101,14 +101,21 @@ const Navbar = (props) => {
               </Button>
               {/* <input type="text" placeholder="Search for Movies, Shows, etc." /> */}
             </div>
-            <Link to="/under-construction" className="white-link">
+            <Link
+              to="/under-construction"
+              className="white-link"
+              style={{ paddingRight: "10px" }}
+            >
               <TranslateSharpIcon />
             </Link>
             {/* login functionality */}
             {loggedInUser ? (
               // If a user is logged in, display their name and a "Logout" button
               <div>
-                <span className="white-link"> Welcome {loggedInUser}</span>
+                <span className="white-link" style={{ paddingRight: "10px" }}>
+                  {" "}
+                  Welcome {loggedInUser}
+                </span>
                 <Button
                   sx={{
                     // marginLeft: "20px",

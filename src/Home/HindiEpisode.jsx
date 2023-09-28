@@ -16,7 +16,7 @@ function HindiEpisode() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
@@ -48,9 +48,16 @@ function HindiEpisode() {
   };
 
   const handleWatchVideo = (videoUrl, item) => {
-    setCurrentVideoUrl(videoUrl);
-    setSelectedVideo(item); // Set the selected video item
-    setIsVideoModalOpen(true);
+    if (isLoggedIn) {
+      // The user is logged in, play the video
+      setCurrentVideoUrl(videoUrl);
+      setSelectedVideo(item);
+      setIsVideoModalOpen(true);
+    } else {
+      // The user is not logged in, redirect to the login page
+      // You should replace '/login' with the actual login page URL
+      window.location.href = "/login";
+    }
   };
 
   const handleCloseVideo = () => {
@@ -96,9 +103,13 @@ function HindiEpisode() {
                 className="hindi-card-image"
                 onClick={() => handleWatchVideo(item.video_url, item)}
               >
-                <img src={item.thumbnail} alt={item.title} />
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  onClick={handleWatchVideo}
+                />
               </div>
-              <div className="hindi-card-details">
+              <div className="hindi-card-details" onClick={handleWatchVideo}>
                 <h3>{item.title}</h3>
                 {/* <p>{item.description}</p> */}
               </div>

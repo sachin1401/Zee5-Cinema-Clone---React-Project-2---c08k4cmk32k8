@@ -14,10 +14,17 @@ const ImageSlider = () => {
   const [featuredContent, setFeaturedContent] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(null); // Define currentVideo here
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const playVideo = (videoUrl) => {
-    setCurrentVideo(videoUrl);
-    setVideoPlaying(true);
+    if (isLoggedIn) {
+      setCurrentVideo(videoUrl);
+      setVideoPlaying(true);
+    } else {
+      // The user is not logged in, redirect to the login page
+      // Replace '/login' with your actual login page URL
+      window.location.href = "/login";
+    }
   };
 
   const closeVideo = () => {
@@ -77,7 +84,7 @@ const ImageSlider = () => {
                   color="primary"
                   onClick={() => playVideo(item.video_url)}
                 >
-                  <PlayArrowIcon />
+                  <PlayArrowIcon onClick={playVideo} />
                   Watch
                 </Button>
               </div>

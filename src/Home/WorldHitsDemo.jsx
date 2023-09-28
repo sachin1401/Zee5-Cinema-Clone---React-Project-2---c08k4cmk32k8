@@ -16,6 +16,7 @@ function WorldHitsDemo() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     fetchFeaturedContent();
@@ -46,9 +47,16 @@ function WorldHitsDemo() {
   };
 
   const handleWatchVideo = (videoUrl, item) => {
-    setCurrentVideoUrl(videoUrl);
-    setSelectedVideo(item); // Set the selected video item
-    setIsVideoModalOpen(true);
+    if (isLoggedIn) {
+      // The user is logged in, play the video
+      setCurrentVideoUrl(videoUrl);
+      setSelectedVideo(item);
+      setIsVideoModalOpen(true);
+    } else {
+      // The user is not logged in, redirect to the login page
+      // You should replace '/login' with the actual login page URL
+      window.location.href = "/login";
+    }
   };
 
   const handleCloseVideo = () => {
@@ -102,7 +110,7 @@ function WorldHitsDemo() {
                       color="primary"
                       onClick={() => handleWatchVideo(item.video_url, item)}
                     >
-                      <PlayArrowIcon />
+                      <PlayArrowIcon onClick={handleWatchVideo} />
                       Watch
                     </Button>
                   </p>

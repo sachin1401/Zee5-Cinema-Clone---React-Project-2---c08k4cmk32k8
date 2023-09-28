@@ -37,6 +37,10 @@ const Register = () => {
     setPassword("");
     setErrorMessage("");
     setSuccessMessage("Registration successful. Please log in.");
+
+    setTimeout(() => {
+      window.location.href = "/login"; // Replace '/login' with the actual login page URL
+    }, 1000);
   };
 
   return (
@@ -48,7 +52,7 @@ const Register = () => {
           personalised experience
         </p>
 
-        <div className="social-icons">
+        {/* <div className="social-icons">
           <Link to="/under-construction">
             <img
               src="https://www.zee5.com/images/google-social-icon-circle.svg?ver=3.13.1"
@@ -67,16 +71,16 @@ const Register = () => {
               alt="Apple"
             />
           </Link>
-        </div>
+        </div> */}
         {/* draw horizontal line */}
 
-        <div className="divider">
+        {/* <div className="divider">
           <div className="line"></div>
           <div className="circle">
             <span className="circle-text">or</span>
           </div>
           <div className="line"></div>
-        </div>
+        </div> */}
         <form onSubmit={handleRegistration}>
           <input
             type="text"

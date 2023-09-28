@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Button } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddToWatchlist from "../Components/AddToWatchlist";
+import { Link } from "react-router-dom";
 
 function TrendingDemo() {
   const [featuredContent, setFeaturedContent] = useState([]);
@@ -14,6 +15,7 @@ function TrendingDemo() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
+  const loggedInUser = localStorage.getItem("loggedInUser");
 
   const [selectedVideo, setSelectedVideo] = useState(null); // Store the selected video item
 
@@ -96,15 +98,28 @@ function TrendingDemo() {
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   <p>
-                    <Button
-                      className="watch-button"
-                      variant="outlined"
-                      color="primary"
-                      onClick={() => handleWatchVideo(item.video_url, item)}
-                    >
-                      <PlayArrowIcon />
-                      Watch
-                    </Button>
+                    {loggedInUser ? (
+                      <Button
+                        className="watch-button"
+                        variant="outlined"
+                        color="primary"
+                        onClick={() => handleWatchVideo(item.video_url, item)}
+                      >
+                        <PlayArrowIcon />
+                        Watch
+                      </Button>
+                    ) : (
+                      <Link to="/login">
+                        <Button
+                          className="watch-button"
+                          variant="outlined"
+                          color="primary"
+                        >
+                          <PlayArrowIcon />
+                          Watch
+                        </Button>
+                      </Link>
+                    )}
                   </p>
                 </div>
                 {isVideoModalOpen && selectedVideo && (
