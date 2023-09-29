@@ -148,10 +148,20 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
     border-radius: 10px;
     padding: 5px;
 }
-.spre{
+/* .spre{
     background-color: #9861c5;
 
-}
+} */
+/* Define a style for the selected plan */
+.selected {
+    background-color: #f0f0f0; /* Change the background color to your desired color */
+    color: #000; /* Change the text color to your desired color */
+    /* Add any other styles you want for the selected plan */
+  }
+  
+  .price-tag{
+    justify-content: center;
+  }
 
 
 .fpre:hover,.spre:hover,.tpre:hover{

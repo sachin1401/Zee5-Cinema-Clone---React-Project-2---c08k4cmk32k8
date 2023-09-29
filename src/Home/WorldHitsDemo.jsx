@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Button } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddToWatchlist from "../Components/AddToWatchlist";
+import { Link } from "react-router-dom";
 
 function WorldHitsDemo() {
   const [featuredContent, setFeaturedContent] = useState([]);
@@ -16,7 +17,7 @@ function WorldHitsDemo() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const loggedInUser = localStorage.getItem("loggedInUser");
 
   useEffect(() => {
     fetchFeaturedContent();
@@ -47,16 +48,9 @@ function WorldHitsDemo() {
   };
 
   const handleWatchVideo = (videoUrl, item) => {
-    if (isLoggedIn) {
-      // The user is logged in, play the video
-      setCurrentVideoUrl(videoUrl);
-      setSelectedVideo(item);
-      setIsVideoModalOpen(true);
-    } else {
-      // The user is not logged in, redirect to the login page
-      // You should replace '/login' with the actual login page URL
-      window.location.href = "/login";
-    }
+    setCurrentVideoUrl(videoUrl);
+    setSelectedVideo(item); // Set the selected video item
+    setIsVideoModalOpen(true);
   };
 
   const handleCloseVideo = () => {
@@ -104,15 +98,28 @@ function WorldHitsDemo() {
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   <p>
-                    <Button
-                      className="watch-button"
-                      variant="outlined"
-                      color="primary"
-                      onClick={() => handleWatchVideo(item.video_url, item)}
-                    >
-                      <PlayArrowIcon onClick={handleWatchVideo} />
-                      Watch
-                    </Button>
+                    {loggedInUser ? (
+                      <Button
+                        className="watch-button"
+                        variant="outlined"
+                        color="primary"
+                        onClick={() => handleWatchVideo(item.video_url, item)}
+                      >
+                        <PlayArrowIcon />
+                        Watch
+                      </Button>
+                    ) : (
+                      <Link to="/login">
+                        <Button
+                          className="watch-button"
+                          variant="outlined"
+                          color="primary"
+                        >
+                          <PlayArrowIcon />
+                          Watch
+                        </Button>
+                      </Link>
+                    )}
                   </p>
                 </div>
                 {isVideoModalOpen && selectedVideo && (

@@ -1,8 +1,12 @@
 import "../style/Payment.css";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Payment = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedPrice = queryParams.get("price");
+
   const [formData, setFormData] = useState({
     cardNumber: "",
     cardName: "",
@@ -114,7 +118,11 @@ const Payment = () => {
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </div>{" "}
+            <p className="selected-price">
+              Selected Price:{" "}
+              <span className="selected-price-color">${selectedPrice}</span>
+            </p>
             <Link to="/buy-plan/payment-status">
               <div className="flex-row">
                 <input className="card-submit" type="submit" />

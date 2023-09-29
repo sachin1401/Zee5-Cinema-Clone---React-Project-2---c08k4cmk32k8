@@ -132,6 +132,16 @@ label {
   background-color: #1a1849d7;
 }
 
+.selected-price {
+  font-size: larger;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.selected-price-color{
+  color: #7c2ebd;
+}
+
+
 
 .payment-status-container {
     display: flex;
@@ -170,7 +180,7 @@ label {
   }
   
   /* Media queries for tablet */
-  @media only screen and (max-width: 1023px) {
+  @media only screen and (max-width: 123px) {
     .container {
       margin: 100px auto 50px;
     }
@@ -190,7 +200,7 @@ label {
   }
   
   /* Media queries for mobile */
-  @media only screen and (max-width: 767px) {
+  /* @media only screen and (max-width: 767px) {
     .container {
       margin: 80px 10px 30px 10px;
     }
@@ -211,4 +221,5 @@ label {
     .form {
       padding-top: 125px;
     }
-  }
+  } */
+

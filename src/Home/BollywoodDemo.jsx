@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Button } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddToWatchlist from "../Components/AddToWatchlist";
+import { Link } from "react-router-dom";
 
 function BollywoodDemo() {
   //   const [featuredContent, setFeaturedContent] = useState([]);
@@ -16,7 +17,8 @@ function BollywoodDemo() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
@@ -48,16 +50,9 @@ function BollywoodDemo() {
   };
 
   const handleWatchVideo = (videoUrl, item) => {
-    if (isLoggedIn) {
-      // The user is logged in, play the video
-      setCurrentVideoUrl(videoUrl);
-      setSelectedVideo(item);
-      setIsVideoModalOpen(true);
-    } else {
-      // The user is not logged in, redirect to the login page
-      // You should replace '/login' with the actual login page URL
-      window.location.href = "/login";
-    }
+    setCurrentVideoUrl(videoUrl);
+    setSelectedVideo(item); // Set the selected video item
+    setIsVideoModalOpen(true);
   };
 
   const handleCloseVideo = () => {
@@ -99,17 +94,21 @@ function BollywoodDemo() {
         <div className="hindi-cards">
           {data.slice(startIndex, startIndex + itemsPerPage).map((item) => (
             <div key={uuidv4()} className="hindi-card">
-              <div
-                className="hindi-card-image"
-                onClick={() => handleWatchVideo(item.video_url, item)}
-              >
-                <img
-                  src={item.thumbnail}
-                  alt={item.title}
-                  onClick={handleWatchVideo}
-                />
-              </div>
-              <div className="hindi-card-details" onClick={handleWatchVideo}>
+              {loggedInUser ? (
+                <div
+                  className="hindi-card-image"
+                  onClick={() => handleWatchVideo(item.video_url, item)}
+                >
+                  <img src={item.thumbnail} alt={item.title} />
+                </div>
+              ) : (
+                <Link to="/login">
+                  <div className="hindi-card-image">
+                    <img src={item.thumbnail} alt={item.title} />
+                  </div>
+                </Link>
+              )}
+              <div className="hindi-card-details">
                 <h3>{item.title}</h3>
                 {/* <p>{item.description}</p> */}
               </div>

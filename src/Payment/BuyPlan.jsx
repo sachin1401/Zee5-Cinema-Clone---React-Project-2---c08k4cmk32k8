@@ -8,6 +8,11 @@ const Buyplan = () => {
   // console.log("payment click");
   // Check if a user is logged in
   const loggedInUser = localStorage.getItem("loggedInUser");
+  const [selectedPrice, setSelectedPrice] = useState(null);
+
+  const handlePlanSelect = (price) => {
+    setSelectedPrice(price);
+  };
   return (
     <div className="headb" style={{ backgroundColor: "red" }}>
       <div className="mainb">
@@ -79,18 +84,18 @@ const Buyplan = () => {
           </div>
 
           <div className="preb">
-            <div className="fpre">
+            <div className="fpre" onClick={() => handlePlanSelect(399)}>
               <h3>Premium</h3>
               <h3>$399</h3>
 
               <h3>3 Months</h3>
             </div>
-            <div className="spre">
+            <div className="spre" onClick={() => handlePlanSelect(699)}>
               <h3>Premium HD</h3>
               <h3>$699</h3>
               <h3>12 Months</h3>
             </div>
-            <div className="tpre">
+            <div className="tpre" onClick={() => handlePlanSelect(1499)}>
               <h3>Premium 4k</h3>
               <h3>$1499</h3>
               <h3>12 Months</h3>
@@ -115,15 +120,23 @@ const Buyplan = () => {
           </p>
           <div className="payb">
             <div>
-              <p>Pay useing UPI</p>
+              {" "}
+              {selectedPrice !== null && (
+                <p className="price-tag">Selected Price: ${selectedPrice}</p>
+              )}
             </div>
+
             {loggedInUser ? (
-              <Link to="/buy-plan/payment">
-                <button className="btnb">Buy Premium</button>
+              <Link to={`/buy-plan/payment?price=${selectedPrice}`}>
+                <button className="btnb" disabled={selectedPrice === null}>
+                  Buy Premium
+                </button>
               </Link>
             ) : (
               <Link to="/login">
-                <button className="btnb">Login to Buy Premium</button>
+                <button className="btnb" disabled={selectedPrice === null}>
+                  Login to Buy Premium
+                </button>
               </Link>
             )}
           </div>

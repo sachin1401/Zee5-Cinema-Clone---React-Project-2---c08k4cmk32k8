@@ -8,23 +8,18 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-multi-carousel/lib/styles.css";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 
 const ImageSlider = () => {
   const [currentPage, setCurrentPage] = useState(14);
   const [featuredContent, setFeaturedContent] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(null); // Define currentVideo here
   const [videoPlaying, setVideoPlaying] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const loggedInUser = localStorage.getItem("loggedInUser");
 
   const playVideo = (videoUrl) => {
-    if (isLoggedIn) {
-      setCurrentVideo(videoUrl);
-      setVideoPlaying(true);
-    } else {
-      // The user is not logged in, redirect to the login page
-      // Replace '/login' with your actual login page URL
-      window.location.href = "/login";
-    }
+    setCurrentVideo(videoUrl);
+    setVideoPlaying(true);
   };
 
   const closeVideo = () => {
@@ -78,15 +73,28 @@ const ImageSlider = () => {
               <div className="button-overlay">
                 {item.title}
                 <br />
-                <Button
-                  className="watch-button"
-                  variant="contained"
-                  color="primary"
-                  onClick={() => playVideo(item.video_url)}
-                >
-                  <PlayArrowIcon onClick={playVideo} />
-                  Watch
-                </Button>
+                {loggedInUser ? (
+                  <Button
+                    className="watch-button"
+                    variant="contained"
+                    color="primary"
+                    onClick={() => playVideo(item.video_url)}
+                  >
+                    <PlayArrowIcon />
+                    Watch
+                  </Button>
+                ) : (
+                  <Link to="/login">
+                    <Button
+                      className="watch-button"
+                      variant="contained"
+                      color="primary"
+                    >
+                      <PlayArrowIcon />
+                      Watch
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           ))}
