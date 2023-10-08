@@ -1,33 +1,59 @@
-import "../style/Payment.css";
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import "../style/payment.css";
+import { useNavigate } from "react-router-dom";
+import DeblurIcon from "@mui/icons-material/Deblur";
 
 const Payment = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const selectedPrice = queryParams.get("price");
+  const totalPrice = queryParams.get("price");
+  const loggedInUser = localStorage.getItem("loggedInUser");
 
-  const [formData, setFormData] = useState({
-    cardNumber: "",
-    cardName: "",
-    month: "Month",
-    year: "Year",
-    cvv: "",
-  });
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardHolderName, setCardHolderName] = useState("");
+  const [expiryMonth, setExpiryMonth] = useState("");
+  const [expiryYear, setExpiryYear] = useState("");
+  const [cvv, setCvv] = useState("");
+  // const [paymentStatus, setPaymentStatus] = useState(null);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form data:", formData);
+
+    // Simulate a 2-second delay for the payment process
+    setTimeout(() => {
+      setPaymentSuccess(true);
+      let updatedPurchasedPlans =
+        JSON.parse(localStorage.getItem(loggedInUser)) || [];
+      localStorage.setItem(
+        loggedInUser,
+        JSON.stringify([...updatedPurchasedPlans, totalPrice])
+      );
+    }, 2000);
   };
+
+  // Use the useEffect hook to reset the payment success message and redirect
+  useEffect(() => {
+    if (paymentSuccess) {
+      // After 2 seconds, reset paymentSuccess to false and redirect to "payment-status"
+      const timer = setTimeout(() => {
+        setPaymentSuccess(false);
+        navigate("/buy-plan/payment-status"); // Redirect to the "payment-status" page
+      }, 5000);
+
+      // Clean up the timer to avoid memory leaks
+      return () => clearTimeout(timer);
+    }
+  }, [paymentSuccess, navigate]);
+
+  // const navigate = useNavigate();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   navigate("/payment-status");
+  // };
 
   return (
     <>
@@ -37,23 +63,26 @@ const Payment = () => {
             <div className="flex-row">
               <label htmlFor="card-number">Card Number</label>
               <input
-                name="cardNumber"
+                name="card-number"
                 className="card-number"
                 type="text"
-                placeholder="1234-4567-7891-4321"
-                value={formData.cardNumber}
-                onChange={handleChange}
+                value={cardNumber}
+                maxLength={16}
+                onChange={(e) => setCardNumber(e.target.value)}
+                placeholder="1234-4567-8910-1112"
+                required
               />
             </div>
             <div className="flex-row">
               <label htmlFor="card-name">Holder Name</label>
               <input
-                name="cardName"
+                name="card-name"
                 className="card-name"
                 type="text"
+                value={cardHolderName}
+                onChange={(e) => setCardHolderName(e.target.value)}
                 placeholder="Sachin Patel"
-                value={formData.cardName}
-                onChange={handleChange}
+                required
               />
             </div>
             <div className="flex-row">
@@ -65,10 +94,12 @@ const Payment = () => {
                       <select
                         name="month"
                         id="month-select"
-                        value={formData.month}
-                        onChange={handleChange}
+                        value={expiryMonth}
+                        maxlength="16"
+                        onChange={(e) => setExpiryMonth(e.target.value)}
+                        required
                       >
-                        <option value="Month" selected disabled>
+                        <option value="" disabled>
                           Month
                         </option>
                         <option value="January">January</option>
@@ -83,14 +114,16 @@ const Payment = () => {
                         <option value="October">October</option>
                         <option value="November">November</option>
                         <option value="December">December</option>
+                        {/* Add the rest of the options for months */}
                       </select>
                       <select
                         name="year"
                         id="year-select"
-                        value={formData.year}
-                        onChange={handleChange}
+                        value={expiryYear}
+                        onChange={(e) => setExpiryYear(e.target.value)}
+                        required
                       >
-                        <option value="Year" selected disabled>
+                        <option value="" disabled>
                           Year
                         </option>
                         <option value="2022">2022</option>
@@ -102,33 +135,41 @@ const Payment = () => {
                         <option value="2028">2028</option>
                         <option value="2029">2029</option>
                         <option value="2030">2030</option>
+                        {/* Add the rest of the options for years */}
                       </select>
                     </td>
                     <td className="table-column">
                       <label htmlFor="card-cvv">CVV</label>
                       <input
-                        name="cvv"
+                        name="card-cvv"
                         className="card-cvv"
                         type="text"
+                        value={cvv}
+                        maxlength="3"
+                        onChange={(e) => setCvv(e.target.value)}
                         placeholder="123"
-                        value={formData.cvv}
-                        onChange={handleChange}
+                        required
                       />
                     </td>
                   </tr>
                 </tbody>
               </table>
-            </div>{" "}
-            <p className="selected-price">
-              Selected Price:{" "}
-              <span className="selected-price-color">${selectedPrice}</span>
-            </p>
-            <Link to="/buy-plan/payment-status">
-              <div className="flex-row">
-                <input className="card-submit" type="submit" />
-              </div>
-            </Link>
+            </div>
+            <div className="flex-row">
+              <h2 className="total-price">Total Price: ₹{totalPrice}</h2>
+            </div>
+            <div className="flex-row">
+              {/* <NavLink to="/payment-status"> */}
+              <input className="card-submit" type="submit" value="Pay Now" />
+              {/* </NavLink> */}
+            </div>
           </form>
+          {paymentSuccess && (
+            <div className="payment-success-message">
+              {" "}
+              <DeblurIcon /> Payment Processing...
+            </div>
+          )}
           <img
             className="card-image"
             src="https://pngimg.com/uploads/credit_card/credit_card_PNG99.png"
