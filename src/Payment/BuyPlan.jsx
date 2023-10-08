@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/BuyPlan.css";
 import { AiOutlineCheck } from "react-icons/ai";
-import { CiPercent } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
 const Buyplan = () => {
@@ -9,10 +8,44 @@ const Buyplan = () => {
   // Check if a user is logged in
   const loggedInUser = localStorage.getItem("loggedInUser");
   const [selectedPrice, setSelectedPrice] = useState(null);
+  const [purchasedPlans, setPurchasedPlans] = useState([]);
+
+  let updatedPurchasedPlans =
+    JSON.parse(localStorage.getItem(loggedInUser)) || [];
+  const isPlanPurchased = updatedPurchasedPlans.includes(`${selectedPrice}`)
+    ? true
+    : false;
+  console.log(isPlanPurchased);
+
+  useEffect(() => {
+    const storedPurchasedPlans = localStorage.getItem(loggedInUser);
+    if (storedPurchasedPlans) {
+      setPurchasedPlans(JSON.parse(storedPurchasedPlans));
+    }
+  }, [loggedInUser]);
 
   const handlePlanSelect = (price) => {
     setSelectedPrice(price);
   };
+
+  const handlePurchase = () => {
+    if (selectedPrice !== null) {
+      const updatedPurchasedPlans = [...purchasedPlans, selectedPrice];
+      setPurchasedPlans(updatedPurchasedPlans);
+
+      // localStorage.setItem(loggedInUser, JSON.stringify(updatedPurchasedPlans));
+
+      // window.location.href = `/buy-plan/payment?price=${selectedPrice}`;
+    }
+  };
+
+  // const isPlanDisabled = (price) => {
+  //   let updatedPurchasedPlans =
+  //     JSON.parse(localStorage.getItem(loggedInUser)) || [];
+  //   console.log(updatedPurchasedPlans);
+  //   return updatedPurchasedPlans.includes(price);
+  // };
+
   return (
     <div className="headb" style={{ backgroundColor: "red" }}>
       <div className="mainb">
@@ -83,29 +116,44 @@ const Buyplan = () => {
             </div>
           </div>
 
-          <div className="preb">
-            <div className="fpre" onClick={() => handlePlanSelect(399)}>
-              <h3>Premium</h3>
-              <h3>$399</h3>
+          <div className="preb ">
+            <div
+              className={`fpre  ${
+                selectedPrice === 399 ? "selected-price" : ""
+              }`}
+              onClick={() => handlePlanSelect(399)}
+            >
+              <h2>Premium</h2>
+              <h4>$399</h4>
 
-              <h3>3 Months</h3>
+              <h4>3 Months</h4>
             </div>
-            <div className="spre" onClick={() => handlePlanSelect(699)}>
-              <h3>Premium HD</h3>
-              <h3>$699</h3>
-              <h3>12 Months</h3>
+            <div
+              className={`spre ${
+                selectedPrice === 699 ? "selected-price" : ""
+              }`}
+              onClick={() => handlePlanSelect(699)}
+            >
+              <h2>Premium HD</h2>
+              <h4>$699</h4>
+              <h4>12 Months</h4>
             </div>
-            <div className="tpre" onClick={() => handlePlanSelect(1499)}>
-              <h3>Premium 4k</h3>
-              <h3>$1499</h3>
-              <h3>12 Months</h3>
+            <div
+              className={`tpre ${
+                selectedPrice === 1499 ? "selected-price" : ""
+              }`}
+              onClick={() => handlePlanSelect(1499)}
+            >
+              <h2>Premium 4k</h2>
+              <h4>$1499</h4>
+              <h4>12 Months</h4>
             </div>
           </div>
           {/* apply */}
-          <div className="applyb">
-            <CiPercent />
+          {/* <div className="applyb">
+            <CiPercent /> 
             <p>Apply code</p>
-          </div>
+          </div> */}
 
           <p className="applyb" style={{ color: "#a4a0a0dc" }}>
             HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability{" "}
@@ -128,8 +176,14 @@ const Buyplan = () => {
 
             {loggedInUser ? (
               <Link to={`/buy-plan/payment?price=${selectedPrice}`}>
-                <button className="btnb" disabled={selectedPrice === null}>
-                  Buy Premium
+                <button
+                  className="btnb"
+                  onClick={handlePurchase}
+                  disabled={selectedPrice === null || isPlanPurchased}
+                >
+                  {isPlanPurchased
+                    ? "You Already Purchased"
+                    : "Buy Premium Plan"}
                 </button>
               </Link>
             ) : (
